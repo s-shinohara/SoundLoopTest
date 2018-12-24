@@ -41,10 +41,11 @@
 
       var done = false;
       function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.PLAYING && !done) {
+        if (event.data == YT.PlayerState.PLAYING && done == 1) {
 //          setTimeout(stopVideo, 6000);
           setTimeout(playVideo_, 10000);
-          done = true;
+//          done = true;
+          done = player.getPlayerState();
         }
       }
       function stopVideo() {
