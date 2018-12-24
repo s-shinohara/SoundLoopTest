@@ -27,7 +27,10 @@
       }
 
       function onPlayerReady(event) {
-        playVideo_();
+        if (event.data == YT.PlayerState.PLAYING) {
+          setTimeout(onPlayerReady, 10000);
+          playVideo_();
+        }
       }
 
       function playVideo_() {
