@@ -27,7 +27,7 @@
       }
 
       function onPlayerReady(event) {
-        playVideo_();
+//        playVideo_();
 //        if (event.data == YT.PlayerState.PLAYING) {
 //          setTimeout(onPlayerReady, 10000);
 //          playVideo_();
@@ -52,9 +52,10 @@
 
       var done = false;
       function onPlayerStateChange(event) {
+        playVideo_();
         if (event.data == YT.PlayerState.PLAYING) {
 //          setTimeout(stopVideo, 6000);
-          setTimeout(playVideo_, 10000);
+//          setTimeout(playVideo_, 10000);
 //          done = true;
 //          done = player.getPlayerState();
         }
