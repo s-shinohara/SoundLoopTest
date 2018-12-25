@@ -25,13 +25,9 @@
           }
         });
       }
-
-      var timeoutId;
         
       function onPlayerReady(event) {
-        playVideo_();
-          
-        timeoutId = setInterval(playVideo_, 5000);
+        playVideo__();
           
 //        if (event.data == YT.PlayerState.PLAYING) {
 //          setTimeout(onPlayerReady, 10000);
@@ -39,7 +35,17 @@
 //        }
       }
       
-      var count = 0;
+
+      var timeoutId;
+        
+      var count;
+      
+      function playVideo__() {
+        count = 0;
+          
+        timeoutId = setInterval(playVideo_, 5000);
+          
+      }
         
       function playVideo_() {
         count++;
