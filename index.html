@@ -27,7 +27,7 @@
       }
         
       function onPlayerReady(event) {
-        playVideo__();
+//        playVideo__();
           
 //        if (event.data == YT.PlayerState.PLAYING) {
 //          setTimeout(onPlayerReady, 10000);
@@ -42,31 +42,26 @@
       count = 0;
       
       function playVideo__() {
-        count++;
-          
-        timeoutId = setInterval(playVideo__, 5000);
-        
-        playVideo_();
-          
-        if (count > 3) {
-            clearTimeout(timeoutId);
-        }
-          
+        timeoutId = setInterval(playVideo_, 5000);
       }
         
       function playVideo_() {
+        count++;
           
         player.seekTo(0, false);
         event.target.playVideo();
-          
+
+        if (count > 3) {
+            clearTimeout(timeoutId);
+        }
       }
 
       var done = false;
       function onPlayerStateChange(event) {
-//        playVideo_();
-        if (event.data == YT.PlayerState.PLAYING) {
+        if (event.data != YT.PlayerState.PLAYING) {
 //          setTimeout(stopVideo, 6000);
 //          setTimeout(playVideo_, 10000);
+            playVideo__();
 //          done = true;
 //          done = player.getPlayerState();
         }
@@ -76,6 +71,6 @@
       }
     </script>
 
-  <div>7</div>
+  <div>8</div>
 </body>
 </html>
