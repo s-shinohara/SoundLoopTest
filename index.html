@@ -45,7 +45,17 @@
       count = 0;
       
       function playVideo__() {
-        timeoutId = setInterval(playVideo_, 5000);
+//        timeoutId = setInterval(playVideo_, 5000);
+        (function loop(){
+          setTimeout(function() {
+
+            player.seekTo(0, false);
+            event.target.playVideo();
+
+            loop();
+          }, 5000);
+        })();
+
       }
         
       function playVideo_() {
@@ -59,6 +69,7 @@
         }
       }
 
+        
       var done = false;
       function onPlayerStateChange(event) {
         if (event.data == YT.PlayerState.PLAYING) {
