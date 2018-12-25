@@ -27,8 +27,10 @@
       }
         
       function onPlayerReady(event) {
-        player.seekTo(0, false);
-        event.target.playVideo();
+          setTimeout(onPlayerReady, 2000);
+
+//        player.seekTo(0, false);
+//        event.target.playVideo();
 
 //        playVideo__();
           
@@ -74,11 +76,11 @@
         
       var done = false;
       function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.PLAYING) {
-//          setTimeout(stopVideo, 6000);
+        if (event.data == YT.PlayerState.PLAYING && done == false) {
+          setTimeout(stopVideo, 1000);
 //          setTimeout(playVideo_, 10000);
-            playVideo__();
-//          done = true;
+          playVideo__();
+          done = true;
 //          done = player.getPlayerState();
         }
       }
@@ -87,6 +89,6 @@
       }
     </script>
 
-  <div>9</div>
+  <div>10</div>
 </body>
 </html>
