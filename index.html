@@ -42,7 +42,7 @@
         player.seekTo(0, false);
         event.target.playVideo();
           
-        var timeoutId = setTimeout(playVideo_, 5000);
+        var timeoutId = setInterval(playVideo_, 5000);
         
         if (count > 3) {
             clearTimeout(timeoutId);
