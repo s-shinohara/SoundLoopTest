@@ -39,23 +39,25 @@
       var timeoutId;
         
       var count;
+      count = 0;
       
       function playVideo__() {
-        count = 0;
+        count++;
           
-        timeoutId = setInterval(playVideo_, 5000);
+        timeoutId = setInterval(playVideo__, 5000);
+        
+        playVideo_();
+          
+        if (count > 3) {
+            clearTimeout(timeoutId);
+        }
           
       }
         
       function playVideo_() {
-        count++;
           
         player.seekTo(0, false);
         event.target.playVideo();
-        
-        if (count > 3) {
-            clearTimeout(timeoutId);
-        }
           
       }
 
