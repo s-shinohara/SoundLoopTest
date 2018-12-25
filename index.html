@@ -26,8 +26,13 @@
         });
       }
 
+      var timeoutId;
+        
       function onPlayerReady(event) {
         playVideo_();
+          
+        timeoutId = setInterval(playVideo_, 5000);
+          
 //        if (event.data == YT.PlayerState.PLAYING) {
 //          setTimeout(onPlayerReady, 10000);
 //          playVideo_();
@@ -41,8 +46,6 @@
           
         player.seekTo(0, false);
         event.target.playVideo();
-          
-        var timeoutId = setInterval(playVideo_, 5000);
         
         if (count > 3) {
             clearTimeout(timeoutId);
@@ -65,6 +68,6 @@
       }
     </script>
 
-  <div>6</div>
+  <div>7</div>
 </body>
 </html>
