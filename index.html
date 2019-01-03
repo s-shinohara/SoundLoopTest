@@ -85,6 +85,8 @@
 
       var done = false;
       function onPlayerStateChange(event) {
+          count++;
+          
 /*
         if (event.data == YT.PlayerState.PLAYING && done == false) {
           setTimeout(stopVideo, 1000);
@@ -98,7 +100,7 @@
         if (event.data == YT.PlayerState.PLAYING && !done) {
           setTimeout(seekTo_, 11750);
           // done = true;
-        } else if (event.data == YT.PlayerState.PAUSED　&& count++ < 10) {
+        } else if (event.data == YT.PlayerState.PAUSED　&& count < 10) {
           // player.seekTo(-11800, false);
           event.target.playVideo();
           done = false;
