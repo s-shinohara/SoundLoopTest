@@ -44,8 +44,8 @@
 
       // var timeoutId;
 
-      // var count;
-      // count = 0;
+      var count;
+      count = 0;
 
       function loop(count, MaxCount){
         if (count <= MaxCount) {
@@ -98,7 +98,7 @@
         if (event.data == YT.PlayerState.PLAYING && !done) {
           setTimeout(seekTo_, 11750);
           // done = true;
-        } else if (event.data == YT.PlayerState.PAUSED) {
+        } else if (event.data == YT.PlayerState.PAUSED　&& count++ < 10) {
           // player.seekTo(-11800, false);
           event.target.playVideo();
           done = false;
