@@ -2,7 +2,11 @@
 
 <html>
 <head>
+<meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta name="PageVariable" id="count" content="1" />
+<meta name="PageVariable" id="loopMaxCount" content="5" />
+
 </head>
 <body>
 
@@ -30,30 +34,19 @@
       }
 
       function onPlayerReady(event) {
-//          setTimeout(onPlayerReady, 2000);
         event.target.seekTo(0, false);
         event.target.playVideo();
 
-        loop(1, 10);
-
         if (event.data == YT.PlayerState.PLAYING) {
-          // setTimeout(onPlayerReady, 5000);
-//          playVideo_();
         }
       }
-
-      // var timeoutId;
 
       var count;
       count = 0;
 
-      function loop(count, MaxCount){
+      function loop(event, count, MaxCount){
         if (count <= MaxCount) {
           event.target.pauseVideo();
-          // event.target.cueVideoById({'videoId': 'WrO9PTpuSSs',
-          //                'startSeconds': '0',
-          //                'endSeconds': '10',
-          //                'suggestedQuality': 'large'});
           event.target.seekTo(-5, false);
           event.target.playVideo();
 
@@ -69,7 +62,6 @@
       }
 
       function playVideoA() {
-//        timeoutId = setInterval(playVideo_, 5000);
         loop(1, 10);
       }
 
@@ -85,50 +77,63 @@
 
       var done = false;
       function onPlayerStateChange(event) {
-          count++;
-          
-/*
-        if (event.data == YT.PlayerState.PLAYING && done == false) {
-          setTimeout(stopVideo, 1000);
-//          setTimeout(playVideo_, 10000);
-          playVideoA();
-          done = true;
-//          done = player.getPlayerState();
-        }
-*/
 
-        if (event.data == YT.PlayerState.PLAYING && !done) {
+        var ifCondition = true;
+        ifCondition = ifCondition && (event.data == YT.PlayerState.PLAYING);
+        ifCondition = ifCondition && (!done);
+        ifCondition = ifCondition && (getInt("count") <= getInt("loopMaxCount"));
+
+        var ifConditionElseIf = true;
+        ifConditionElseIf = ifConditionElseIf && (event.data == YT.PlayerState.PAUSED);
+
+        if (ifCondition) {
           setTimeout(seekTo_, 11750);
-          // done = true;
-        } else if (event.data == YT.PlayerState.PAUSED　&& count < 10) {
-          // player.seekTo(-11800, false);
+
+        } else if (ifConditionElseIf) {
           event.target.playVideo();
           done = false;
 
         }
-
-
       }
 
       function seekTo_() {
+        var cnt;
+
+        cnt = getInt("count");
+        cnt = cnt + 1;
+        // console.log(cnt);
+        setVar("count", cnt);
+
         player.seekTo(-11800, true);
       }
 
       function stopVideo() {
         player.stopVideo();
-        // player.seekTo(0, false);
-        // event.target.playVideo();
       }
 
       function pauseVideo() {
         player.pauseVideo();
-        // player.seekTo(-11800, false);
-        // event.target.playVideo();
-
       }
+
+      function getInt(name) {
+        var ret;
+        ret = parseInt(getVar(name));
+
+        return ret;
+      }
+
+      function getVar(name) {
+        var ret;
+        ret = document.getElementById(name).getAttribute("content");
+
+        return ret;
+      }
+
+      function setVar(name, value) {
+        document.getElementById(name).setAttribute("content", value.toString());
+      }
+
     </script>
 
-  <span></span>
 </body>
 </html>
-
